@@ -43,9 +43,11 @@ The `javadoc` documentation format should be used. [XAlign](https://github.com/q
 
 ## File Syntax
 
-Files should follow a strict format to increase the readability and to provide a familiar, consistent interface.
+Files should follow this format to increase readability and provide a familiar, consistent interface.
 
 ### .h
+***Header files should be constructed in this order**
+
 #### File Header Comments
 Comments should be the first text in the file, starting with a new line, the name of the file, the name of the application, new line, the author/creator of the file with the date, the copyright/licensing of the file, followed by a new line.  
 **For example:**
@@ -149,6 +151,8 @@ The class's interface should declare all publically accessible properties and me
 ```
 
 ### .m
+***Header files should be constructed in this order**
+
 #### File Header Comments
 Comments in `.m` files are similar to those in `.h` files, the only difference being a brief overview of the files usage, followed by a new line.  
 
@@ -187,13 +191,8 @@ Comments in `.m` files are similar to those in `.h` files, the only difference b
 Interface declarations should come next (see [private properties](#private-properties) for more details)
 
 #### Static variables
-Following the interface should be any static declarations of context-relevant reused strings and variables:
-```objc
-static CGFloat kNavigationMenuCellHeight = 47.0f;
+Following the interface should be any static declarations of context-relevant reused strings and variables. See [constants](#constants)
 
-static NSString *kNavigationMenuIdentifier = @"NavigationMenu";
-static NSString *kNavigationMenuCellIdentifier = @"NavigationMenuCell";
-```
 #### Implementation
 The `@implementation` should be implemented as per the styles and syntax below.
 
