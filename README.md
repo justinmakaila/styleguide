@@ -13,6 +13,7 @@ Here are some of the documents from Apple that informed the style guide. If some
 
 ## Table of Contents
 
+* [Documentation](#documentation)
 * [File Syntax](#file-syntax)
   * [.h](#h)
   * [.m](#m)
@@ -36,6 +37,9 @@ Here are some of the documents from Apple that informed the style guide. If some
 * [Booleans](#booleans)
 * [Singletons](#singletons)
 * [Xcode Project](#xcode-project)
+
+## Documentation
+The `javadoc` documentation format should be used. [XAlign](https://github.com/qfish/XAlign) makes this much easier. Documentation is generated using [Doxygen](http://www.doxygen.org).
 
 ## File Syntax
 
