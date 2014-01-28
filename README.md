@@ -153,7 +153,7 @@ The class's interface should declare all publically accessible properties and me
 Comments in `.m` files are similar to those in `.h` files, the only difference being a brief overview of the files usage, followed by a new line.  
 
 #### Imports
-`#import`'s should come next, with a new line separating each logical grouping. The `.h` file should start the list, followed by controller objects, view controllers, and then subviews. This eliminates the need for explicit comments for details about the groupings.
+`#import`'s should come next, with a new line separating each logical grouping. The `.h` file should start the list, followed by controller objects, view controllers, and then subviews. This eliminates the need for explicit comments for details about the groupings.  
 **Good:**
 ```objc
 #import "HomeNavigationController.h"
