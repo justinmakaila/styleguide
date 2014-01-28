@@ -379,7 +379,7 @@ id varnm;
 
 ### Underscores
 
-When using properties, instance variables should always be accessed and mutated using `self.`. This means that all properties will be visually distinct, as they will all be prefaced with `self.`. Local variables should not contain underscores.
+When using properties, instance variables should always be accessed and mutated using `self` outside of the scope of their accessors and mutators. This means that all properties will be visually distinct, as they will all be prefaced with `self`. Local variables should not contain underscores.
 
 ## Comments
 
