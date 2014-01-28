@@ -37,7 +37,18 @@ Here are some of the documents from Apple that informed the style guide. If some
 * [Xcode Project](#xcode-project)
 
 ## Documentation
-The `javadoc` documentation format should be used. [XAlign](https://github.com/qfish/XAlign) makes this much easier. Documentation is generated using [Doxygen](http://www.doxygen.org).
+All properties of classes and methods should be documented using the `javadoc` format for documentation to be generated using [Doxygen](http://www.doxygen.org). [XAlign](https://github.com/qfish/XAlign) makes this much easier.  
+**For example:**
+```
+/**
+ *  Returns the video at index
+ *
+ *  @param index The index of the cell
+ *
+ *  @return The video being displayed by the cell
+ */
+- (PVideo*)videoAtIndex:(NSInteger)index {...}
+```
 
 ## File Syntax
 
