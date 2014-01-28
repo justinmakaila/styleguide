@@ -13,6 +13,9 @@ Here are some of the documents from Apple that informed the style guide. If some
 
 ## Table of Contents
 
+* [File Syntax](#file-syntax)
+  * [.h](#h)
+  * [.m](#m)
 * [Dot-Notation Syntax](#dot-notation-syntax)
 * [Spacing](#spacing)
 * [Conditionals](#conditionals)
@@ -33,6 +36,168 @@ Here are some of the documents from Apple that informed the style guide. If some
 * [Booleans](#booleans)
 * [Singletons](#singletons)
 * [Xcode Project](#xcode-project)
+
+## File Syntax
+
+Files should follow a strict format to increase the readability and to provide a familiar, consistent interface.
+
+### .h
+#### Comments
+Comments should be the first text in the file, starting with a new line, the name of the file, the name of the application, new line, the author/creator of the file with the date, the copyright/licensing of the file, followed by a new line.  
+**For example:**
+```objc
+//
+//  HomeNavigationViewController.h
+//  Present
+//
+//  Created by Justin Makaila on 7/29/13.
+//  Copyright (c) 2013 Present, Inc. All rights reserved.
+//
+```
+#### Imports
+Any framework `#import`'s (including CocoaPods) should come next, followed by custom class `#import`'s. `@class` directives should be used in `.h` files, whereas the `.m` would use an `#import`. If anything in the `.h` needs to access a property of a class, that class should be imported using `#import`.  The `@class` statements should be logically grouped with controllers coming first, followed by view controllers, and then subviews.  
+**For example:**
+```objc
+#import <UIKit/UIKit.h>
+#import <JMUploadProgressViewController.h>
+
+@class HomeNavigationControllerDelegate;
+
+@class HomeContainerViewController;
+@class InformationContainerViewController;
+@class LoginViewController;
+@class DiscoverTableViewController;
+@class ActivityViewController;
+@class ProfileViewController;
+@class CameraViewController;
+@class PTitleViewController;
+
+@class NavigationMenu;
+```
+#### Enumerations and `typedef`'s
+Enumerations and other public `typedef`'s should follow the `#import`'s and `@class` lines, following the format declared in [enumerated types](#enumerated-types).
+
+#### Delegates
+Class protocols should be implemented above the `@interface` and include documentation. If the protocol is > 5 methods, `@protocol protocolName` should be used, and the protocol should be defined beneath the `@interface`.
+
+#### Interface
+The class's interface should declare all publically accessible properties and method declarations. If the class has a delegate, it should be the first declared property and named `delegate`. `UIView` properties should be declared in a top down, left to right fashion. Properties should be declared with objects coming first, followed by primitive types. There should be a newline between properties and methods. Class methods should come before instance methods, including documentation. Accessors/mutators should come first, followed by utility functions, `IBAction`'s, and then animations.  
+**For example:**
+```objc
+/**
+ *  A cell to display user data
+ */
+@interface PUserCell : UITableViewCell
+
+/**
+ *  The cell's delegate
+ */
+@property (unsafe_unretained) id<PUserCellDelegate> delegate;
+
+/**
+ *  The user's profile image
+ */
+@property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
+
+/**
+ *  The username label
+ */
+@property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
+
+/**
+ *  The detail label
+ */
+#warning Not yet implemented
+@property (strong, nonatomic) IBOutlet UILabel *detailLabel;
+
+/**
+ *  The button to trigger a un/follow action
+ */
+@property (strong, nonatomic) IBOutlet UIButton *followButton;
+
+/**
+ *  Returns the view's nib
+ *
+ *  @return the view's nib
+ */
++ (UINib*)nib;
+
+/**
+ *  Sets the profile image
+ *
+ *  @param imageFile The image file
+ */
+-(void)setProfileImage:(PFFile*)imageFile;
+
+/**
+ *  Sets the usernameLabel text
+ *
+ *  @param username The username to display
+ */
+-(void)setUsername:(NSString*)username;
+
+/**
+ *  The action for the follow button
+ *
+ *  @param sender The sender
+ */
+-(IBAction)followPressed:(id)sender;
+```
+
+### .m
+Comments in `.m` files are similar to those in `.h` files, the only difference being a brief overview of the files usage.  
+**For example:**
+```objc
+//
+//  HomeNavigationViewController.m
+//  Present
+//
+//  Created by Justin Makaila on 7/29/13.
+//  Copyright (c) 2013 Present, Inc. All rights reserved.
+//
+//  This navigation controller manages the state of the application
+//
+```
+`#import`'s should come next, with a new line separating each logical grouping. The `.h` file should start the list, followed by controller objects, view controllers, and then subviews. This eliminates the need for explicit comments for details about the groupings.
+**Good:**
+```objc
+#import "HomeNavigationController.h"
+
+#import "NavigationMenuDataSource.h"
+#import "HomeNavigationControllerDelegate.h"
+#import "PNetworkCommunications.h"
+
+#import "LoginViewController.h"
+#import "PConnectSocialAccountsViewController.h"
+#import "InformationContainerViewController.h"
+#import "CommentViewController.h"
+#import "PTitleViewController.h"
+
+#import "NavigationMenuCell.h"
+```
+**Bad:**
+```objc
+#import "HomeNavigationController.h"
+
+// Subviews
+#import "SomeSubview.h"
+
+// View Controllers
+#import "PViewController.h"
+
+// Controllers
+#import "PNetworkCommunications.h"
+```
+Interface declarations should come next (see [private properties](#private-properties) for more details)
+
+Following the interface should be any static declarations of context-relevant reused strings and variables:
+```objc
+static CGFloat kNavigationMenuCellHeight = 47.0f;
+
+static NSString *kNavigationMenuIdentifier = @"NavigationMenu";
+static NSString *kNavigationMenuCellIdentifier = @"NavigationMenuCell";
+```
+The `@implementation` should be implemented as per the styles and syntax below.
 
 ## Dot-Notation Syntax
 
@@ -322,16 +487,33 @@ typedef NS_ENUM(NSInteger, PAdRequestState) {
 
 ## Private Properties
 
-Private properties should be declared in class extensions (anonymous categories) in the implementation file of a class. Named categories (such as `PPrivate` or `private`) should never be used unless extending another class.
+Private properties should be declared in class extensions (anonymous categories) in the implementation file of a class. Named categories (such as `PPrivate` or `private`) should never be used unless extending another class. Documentation of the properties should also be included
 
 **For example:**
 
-```objc
-@interface PAdvertisement ()
+```
+@interface HomeNavigationController ()
 
-@property (nonatomic, strong) GADBannerView *googleAdView;
-@property (nonatomic, strong) ADBannerView *iAdView;
-@property (nonatomic, strong) UIWebView *adXWebView;
+/**
+ * The data source of the navigation menu
+ */
+@property (strong, nonatomic) NavigationMenuDataSource *navigationMenuDataSource;
+
+/**
+ * The network client to be observed
+ */
+@property (strong, nonatomic) PNetworkCommunications *networkClient;
+
+/**
+ * The view displayed above the navigation bar when the navigation menu
+ * is visible
+ */
+@property (strong, nonatomic) UIView *navigationMenuBackgroundView;
+
+/**
+ * The view displayed beneath the navigation menu and above self.view
+ */
+@property (strong, nonatomic) UIView *backgroundView;
 
 @end
 ```
