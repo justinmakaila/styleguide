@@ -46,7 +46,7 @@ The `javadoc` documentation format should be used. [XAlign](https://github.com/q
 Files should follow this format to increase readability and provide a familiar, consistent interface.
 
 ### .h
-***Header files should be constructed in this order**
+***Header files should be constructed in this order***
 
 #### File Header Comments
 Comments should be the first text in the file, starting with a new line, the name of the file, the name of the application, new line, the author/creator of the file with the date, the copyright/licensing of the file, followed by a new line.  
@@ -151,7 +151,7 @@ The class's interface should declare all publically accessible properties and me
 ```
 
 ### .m
-***Header files should be constructed in this order**
+***Body files should be constructed in this order***
 
 #### File Header Comments
 Comments in `.m` files are similar to those in `.h` files, the only difference being a brief overview of the files usage, followed by a new line.  
