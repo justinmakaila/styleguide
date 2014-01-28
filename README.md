@@ -1,7 +1,5 @@
 ## Code Conventions
 
-### Based on NYTimes Objective-C Style Guide
-
 ### Introduction
 
 Here are some of the documents from Apple that informed the style guide. If something isn't mentioned here, it's probably covered in great detail in one of these:
