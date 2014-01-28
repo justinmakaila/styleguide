@@ -42,7 +42,7 @@ Here are some of the documents from Apple that informed the style guide. If some
 Files should follow a strict format to increase the readability and to provide a familiar, consistent interface.
 
 ### .h
-#### Comments
+#### File Header Comments
 Comments should be the first text in the file, starting with a new line, the name of the file, the name of the application, new line, the author/creator of the file with the date, the copyright/licensing of the file, followed by a new line.  
 **For example:**
 ```objc
@@ -77,10 +77,10 @@ Any framework `#import`'s (including CocoaPods) should come next, followed by cu
 #### Enumerations and `typedef`'s
 Enumerations and other public `typedef`'s should follow the `#import`'s and `@class` lines, following the format declared in [enumerated types](#enumerated-types).
 
-#### Delegates
+#### Delegates and Protocols
 Class protocols should be implemented above the `@interface` and include documentation. If the protocol is > 5 methods, `@protocol protocolName` should be used, and the protocol should be defined beneath the `@interface`.
 
-#### Interface
+#### Interface declarations
 The class's interface should declare all publically accessible properties and method declarations. If the class has a delegate, it should be the first declared property and named `delegate`. `UIView` properties should be declared in a top down, left to right fashion. Properties should be declared with objects coming first, followed by primitive types. There should be a newline between properties and methods. Class methods should come before instance methods, including documentation. Accessors/mutators should come first, followed by utility functions, `IBAction`'s, and then animations.  
 **For example:**
 ```objc
@@ -145,19 +145,10 @@ The class's interface should declare all publically accessible properties and me
 ```
 
 ### .m
-Comments in `.m` files are similar to those in `.h` files, the only difference being a brief overview of the files usage.  
-**For example:**
-```objc
-//
-//  HomeNavigationViewController.m
-//  Present
-//
-//  Created by Justin Makaila on 7/29/13.
-//  Copyright (c) 2013 Present, Inc. All rights reserved.
-//
-//  This navigation controller manages the state of the application
-//
-```
+#### File Header Comments
+Comments in `.m` files are similar to those in `.h` files, the only difference being a brief overview of the files usage, followed by a new line.  
+
+#### Imports
 `#import`'s should come next, with a new line separating each logical grouping. The `.h` file should start the list, followed by controller objects, view controllers, and then subviews. This eliminates the need for explicit comments for details about the groupings.
 **Good:**
 ```objc
@@ -188,8 +179,10 @@ Comments in `.m` files are similar to those in `.h` files, the only difference b
 // Controllers
 #import "PNetworkCommunications.h"
 ```
+#### Interface declarations
 Interface declarations should come next (see [private properties](#private-properties) for more details)
 
+#### Static variables
 Following the interface should be any static declarations of context-relevant reused strings and variables:
 ```objc
 static CGFloat kNavigationMenuCellHeight = 47.0f;
@@ -197,6 +190,7 @@ static CGFloat kNavigationMenuCellHeight = 47.0f;
 static NSString *kNavigationMenuIdentifier = @"NavigationMenu";
 static NSString *kNavigationMenuCellIdentifier = @"NavigationMenuCell";
 ```
+#### Implementation
 The `@implementation` should be implemented as per the styles and syntax below.
 
 ## Dot-Notation Syntax
