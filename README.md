@@ -303,7 +303,7 @@ In method signatures, there should be a space after the scope (-/+ symbol). Ther
 
 **For Example**:
 ```objc
-- (void)setExampleText:(NSString *)text image:(UIImage *)image;
+- (void)setExampleText:(NSString*)text image:(UIImage*)image;
 ```
 ## Variables
 
@@ -465,7 +465,7 @@ Constants are preferred over in-line string literals or numbers, as they allow f
 **For example:**
 
 ```objc
-static NSString * const PViewControllerCompanyName = @"Present, Inc.";
+static NSString *const PViewControllerCompanyName = @"Present, Inc.";
 
 static const CGFloat PImageThumbnailHeight = 50.0;
 ```
