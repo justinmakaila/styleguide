@@ -419,6 +419,7 @@ NSDictionary *productManagers = @{
 };
 NSNumber *shouldUseLiterals = @YES;
 NSNumber *buildingZIPCode = @08542;
+NSNumber *someNumber = @(someInteger);
 ```
 
 **Not:**
@@ -428,6 +429,7 @@ NSArray *names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex",
 NSDictionary *productManagers = [NSDictionary dictionaryWithObjectsAndKeys: @"Kate", @"iPhone", @"Kamal", @"iPad", @"Bill", @"Mobile Web", nil];
 NSNumber *shouldUseLiterals = [NSNumber numberWithBool:YES];
 NSNumber *buildingZIPCode = [NSNumber numberWithInteger:08542];
+NSNumber *someNumber = [NSNumber numberWithInteger:someInteger];
 ```
 
 ## CGRect Functions
